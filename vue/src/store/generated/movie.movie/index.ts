@@ -384,42 +384,16 @@ export default {
 		},
 		
 		
-		async sendMsgUpdateReview({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgCreateReview({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgUpdateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
+				const result = await client.MovieMovie.tx.sendMsgCreateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgUpdateReview:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgCreateMovie({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgCreateMovie({ value, fee: {amount: fee, gas: "200000"}, memo })
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateMovie:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgCreateMovie:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgUpdateMovie({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgUpdateMovie({ value, fee: {amount: fee, gas: "200000"}, memo })
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateMovie:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgUpdateMovie:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgCreateReview:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -436,19 +410,6 @@ export default {
 				}
 			}
 		},
-		async sendMsgCreateReview({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgCreateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgCreateReview:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
 		async sendMsgDeleteMovie({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const client=await initClient(rootGetters)
@@ -462,43 +423,56 @@ export default {
 				}
 			}
 		},
-		
-		async MsgUpdateReview({ rootGetters }, { value }) {
+		async sendMsgCreateMovie({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
-				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgUpdateReview({value})
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgUpdateReview:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgCreateMovie({ rootGetters }, { value }) {
-			try {
-				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgCreateMovie({value})
-				return msg
+				const client=await initClient(rootGetters)
+				const result = await client.MovieMovie.tx.sendMsgCreateMovie({ value, fee: {amount: fee, gas: "200000"}, memo })
+				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
 					throw new Error('TxClient:MsgCreateMovie:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgCreateMovie:Create Could not create message: ' + e.message)
+				}else{
+					throw new Error('TxClient:MsgCreateMovie:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
-		async MsgUpdateMovie({ rootGetters }, { value }) {
+		async sendMsgUpdateReview({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
-				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgUpdateMovie({value})
-				return msg
+				const client=await initClient(rootGetters)
+				const result = await client.MovieMovie.tx.sendMsgUpdateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgUpdateReview:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgUpdateMovie({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const client=await initClient(rootGetters)
+				const result = await client.MovieMovie.tx.sendMsgUpdateMovie({ value, fee: {amount: fee, gas: "200000"}, memo })
+				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
 					throw new Error('TxClient:MsgUpdateMovie:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgUpdateMovie:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		
+		async MsgCreateReview({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.MovieMovie.tx.msgCreateReview({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgUpdateMovie:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgCreateReview:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -515,19 +489,6 @@ export default {
 				}
 			}
 		},
-		async MsgCreateReview({ rootGetters }, { value }) {
-			try {
-				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgCreateReview({value})
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgCreateReview:Create Could not create message: ' + e.message)
-				}
-			}
-		},
 		async MsgDeleteMovie({ rootGetters }, { value }) {
 			try {
 				const client=initClient(rootGetters)
@@ -538,6 +499,45 @@ export default {
 					throw new Error('TxClient:MsgDeleteMovie:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgDeleteMovie:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgCreateMovie({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.MovieMovie.tx.msgCreateMovie({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgCreateMovie:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgCreateMovie:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgUpdateReview({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.MovieMovie.tx.msgUpdateReview({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgUpdateReview:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgUpdateMovie({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.MovieMovie.tx.msgUpdateMovie({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateMovie:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgUpdateMovie:Create Could not create message: ' + e.message)
 				}
 			}
 		},
