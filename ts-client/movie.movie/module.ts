@@ -7,10 +7,76 @@ import { msgTypes } from './registry';
 import { IgniteClient } from "../client"
 import { MissingWalletError } from "../helpers"
 import { Api } from "./rest";
+import { MsgCreateMovie } from "./types/movie/movie/tx";
+import { MsgUpdateMovie } from "./types/movie/movie/tx";
+import { MsgDeleteMovie } from "./types/movie/movie/tx";
+import { MsgCreateReview } from "./types/movie/movie/tx";
+import { MsgUpdateReview } from "./types/movie/movie/tx";
+import { MsgDeleteReview } from "./types/movie/movie/tx";
 
 
-export {  };
+export { MsgCreateMovie, MsgUpdateMovie, MsgDeleteMovie, MsgCreateReview, MsgUpdateReview, MsgDeleteReview };
 
+type sendMsgCreateMovieParams = {
+  value: MsgCreateMovie,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateMovieParams = {
+  value: MsgUpdateMovie,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgDeleteMovieParams = {
+  value: MsgDeleteMovie,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgCreateReviewParams = {
+  value: MsgCreateReview,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgUpdateReviewParams = {
+  value: MsgUpdateReview,
+  fee?: StdFee,
+  memo?: string
+};
+
+type sendMsgDeleteReviewParams = {
+  value: MsgDeleteReview,
+  fee?: StdFee,
+  memo?: string
+};
+
+
+type msgCreateMovieParams = {
+  value: MsgCreateMovie,
+};
+
+type msgUpdateMovieParams = {
+  value: MsgUpdateMovie,
+};
+
+type msgDeleteMovieParams = {
+  value: MsgDeleteMovie,
+};
+
+type msgCreateReviewParams = {
+  value: MsgCreateReview,
+};
+
+type msgUpdateReviewParams = {
+  value: MsgUpdateReview,
+};
+
+type msgDeleteReviewParams = {
+  value: MsgDeleteReview,
+};
 
 
 export const registry = new Registry(msgTypes);
@@ -30,6 +96,138 @@ export const txClient = ({ signer, prefix, addr }: TxClientOptions = { addr: "ht
 
   return {
 		
+		async sendMsgCreateMovie({ value, fee, memo }: sendMsgCreateMovieParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateMovie: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgCreateMovie({ value: MsgCreateMovie.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateMovie: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateMovie({ value, fee, memo }: sendMsgUpdateMovieParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateMovie: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgUpdateMovie({ value: MsgUpdateMovie.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateMovie: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgDeleteMovie({ value, fee, memo }: sendMsgDeleteMovieParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteMovie: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgDeleteMovie({ value: MsgDeleteMovie.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteMovie: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgCreateReview({ value, fee, memo }: sendMsgCreateReviewParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgCreateReview: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgCreateReview({ value: MsgCreateReview.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgCreateReview: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgUpdateReview({ value, fee, memo }: sendMsgUpdateReviewParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgUpdateReview: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgUpdateReview({ value: MsgUpdateReview.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgUpdateReview: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		async sendMsgDeleteReview({ value, fee, memo }: sendMsgDeleteReviewParams): Promise<DeliverTxResponse> {
+			if (!signer) {
+					throw new Error('TxClient:sendMsgDeleteReview: Unable to sign Tx. Signer is not present.')
+			}
+			try {			
+				const { address } = (await signer.getAccounts())[0]; 
+				const signingClient = await SigningStargateClient.connectWithSigner(addr,signer,{registry, prefix});
+				let msg = this.msgDeleteReview({ value: MsgDeleteReview.fromPartial(value) })
+				return await signingClient.signAndBroadcast(address, [msg], fee ? fee : defaultFee, memo)
+			} catch (e: any) {
+				throw new Error('TxClient:sendMsgDeleteReview: Could not broadcast Tx: '+ e.message)
+			}
+		},
+		
+		
+		msgCreateMovie({ value }: msgCreateMovieParams): EncodeObject {
+			try {
+				return { typeUrl: "/movie.movie.MsgCreateMovie", value: MsgCreateMovie.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateMovie: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateMovie({ value }: msgUpdateMovieParams): EncodeObject {
+			try {
+				return { typeUrl: "/movie.movie.MsgUpdateMovie", value: MsgUpdateMovie.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateMovie: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteMovie({ value }: msgDeleteMovieParams): EncodeObject {
+			try {
+				return { typeUrl: "/movie.movie.MsgDeleteMovie", value: MsgDeleteMovie.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteMovie: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgCreateReview({ value }: msgCreateReviewParams): EncodeObject {
+			try {
+				return { typeUrl: "/movie.movie.MsgCreateReview", value: MsgCreateReview.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgCreateReview: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgUpdateReview({ value }: msgUpdateReviewParams): EncodeObject {
+			try {
+				return { typeUrl: "/movie.movie.MsgUpdateReview", value: MsgUpdateReview.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgUpdateReview: Could not create message: ' + e.message)
+			}
+		},
+		
+		msgDeleteReview({ value }: msgDeleteReviewParams): EncodeObject {
+			try {
+				return { typeUrl: "/movie.movie.MsgDeleteReview", value: MsgDeleteReview.fromPartial( value ) }  
+			} catch (e: any) {
+				throw new Error('TxClient:MsgDeleteReview: Could not create message: ' + e.message)
+			}
+		},
 		
 	}
 };
