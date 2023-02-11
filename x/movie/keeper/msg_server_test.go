@@ -4,10 +4,11 @@ import (
 	"context"
 	"testing"
 
-	sdk "github.com/cosmos/cosmos-sdk/types"
 	keepertest "movie/testutil/keeper"
 	"movie/x/movie/keeper"
 	"movie/x/movie/types"
+
+	sdk "github.com/cosmos/cosmos-sdk/types"
 )
 
 func setupMsgServer(t testing.TB) (types.MsgServer, context.Context) {

@@ -1,6 +1,8 @@
 package types
 
 import (
+	"strings"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
 )
@@ -45,6 +47,9 @@ func (msg *MsgCreateMovie) GetSignBytes() []byte {
 
 func (msg *MsgCreateMovie) ValidateBasic() error {
 	_, err := sdk.AccAddressFromBech32(msg.Creator)
+	if strings.TrimSpace(msg.Title) == "" {
+		return sdkerrors.Wrapf(ErrMissedMovieTitle, "invalid creator address (%s)", err)
+	}
 	if err != nil {
 		return sdkerrors.Wrapf(sdkerrors.ErrInvalidAddress, "invalid creator address (%s)", err)
 	}

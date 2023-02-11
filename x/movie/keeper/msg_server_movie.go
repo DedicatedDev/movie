@@ -4,13 +4,20 @@ import (
 	"context"
 	"fmt"
 
+	"movie/x/movie/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"movie/x/movie/types"
 )
 
 func (k msgServer) CreateMovie(goCtx context.Context, msg *types.MsgCreateMovie) (*types.MsgCreateMovieResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	//check movie already exist or not
+	_, found := k.GetStoredMovie(ctx, msg.Title)
+	if found {
+		return nil, fmt.Errorf("[ERR] already exist this movie: %s", msg.Title)
+	}
 
 	var movie = types.Movie{
 		Creator:     msg.Creator,
@@ -19,13 +26,17 @@ func (k msgServer) CreateMovie(goCtx context.Context, msg *types.MsgCreateMovie)
 		Year:        msg.Year,
 	}
 
-	//movies := k.Keeper.GetAllMovie(ctx)
-
 	id := k.AppendMovie(
 		ctx,
 		movie,
 	)
 
+	//register this movie to storedMovie
+	storedMovie := types.StoredMovie{
+		Title:   msg.Title,
+		MovieId: id,
+	}
+	k.Keeper.SetStoredMovie(ctx, storedMovie)
 	return &types.MsgCreateMovieResponse{
 		Id: id,
 	}, nil

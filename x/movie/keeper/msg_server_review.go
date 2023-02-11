@@ -37,6 +37,13 @@ func (k msgServer) CreateReview(goCtx context.Context, msg *types.MsgCreateRevie
 		review,
 	)
 
+	//Save review to storedReview
+	k.SetStoredReview(ctx, types.StoredReview{
+		MovieId:  msg.MovieId,
+		Creator:  msg.Creator,
+		ReviewId: id,
+	})
+
 	return &types.MsgCreateReviewResponse{
 		Id: id,
 	}, nil

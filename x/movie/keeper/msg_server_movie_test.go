@@ -94,3 +94,23 @@ func TestMovieMsgServerDelete(t *testing.T) {
 		})
 	}
 }
+
+func TestMovieMsgServerRejectDuplicatedCreate(t *testing.T) {
+	srv, ctx := setupMsgServer(t)
+	//create first movie
+	createRes, err := srv.CreateMovie(ctx, &types.MsgCreateMovie{
+		Creator:     types.Alice,
+		Title:       "Adventure at Rio",
+		Description: "Adventure at Rio",
+	})
+	require.Nil(t, err)
+	require.Equal(t, uint64(0), createRes.Id)
+
+	//create second movie
+	_, err = srv.CreateMovie(ctx, &types.MsgCreateMovie{
+		Creator:     types.Alice,
+		Title:       "Adventure at Rio",
+		Description: "Adventure at Rio",
+	})
+	require.Error(t, err)
+}
