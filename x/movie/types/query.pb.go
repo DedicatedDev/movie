@@ -481,6 +481,190 @@ func (m *QueryAllReviewResponse) GetPagination() *query.PageResponse {
 	return nil
 }
 
+type QueryGetStoredMovieRequest struct {
+	Title string `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+}
+
+func (m *QueryGetStoredMovieRequest) Reset()         { *m = QueryGetStoredMovieRequest{} }
+func (m *QueryGetStoredMovieRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStoredMovieRequest) ProtoMessage()    {}
+func (*QueryGetStoredMovieRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6a692c7f6b793183, []int{10}
+}
+func (m *QueryGetStoredMovieRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetStoredMovieRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetStoredMovieRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetStoredMovieRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStoredMovieRequest.Merge(m, src)
+}
+func (m *QueryGetStoredMovieRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetStoredMovieRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStoredMovieRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetStoredMovieRequest proto.InternalMessageInfo
+
+func (m *QueryGetStoredMovieRequest) GetTitle() string {
+	if m != nil {
+		return m.Title
+	}
+	return ""
+}
+
+type QueryGetStoredMovieResponse struct {
+	StoredMovie StoredMovie `protobuf:"bytes,1,opt,name=storedMovie,proto3" json:"storedMovie"`
+}
+
+func (m *QueryGetStoredMovieResponse) Reset()         { *m = QueryGetStoredMovieResponse{} }
+func (m *QueryGetStoredMovieResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryGetStoredMovieResponse) ProtoMessage()    {}
+func (*QueryGetStoredMovieResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6a692c7f6b793183, []int{11}
+}
+func (m *QueryGetStoredMovieResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryGetStoredMovieResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryGetStoredMovieResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryGetStoredMovieResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryGetStoredMovieResponse.Merge(m, src)
+}
+func (m *QueryGetStoredMovieResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryGetStoredMovieResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryGetStoredMovieResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryGetStoredMovieResponse proto.InternalMessageInfo
+
+func (m *QueryGetStoredMovieResponse) GetStoredMovie() StoredMovie {
+	if m != nil {
+		return m.StoredMovie
+	}
+	return StoredMovie{}
+}
+
+type QueryAllStoredMovieRequest struct {
+	Pagination *query.PageRequest `protobuf:"bytes,1,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllStoredMovieRequest) Reset()         { *m = QueryAllStoredMovieRequest{} }
+func (m *QueryAllStoredMovieRequest) String() string { return proto.CompactTextString(m) }
+func (*QueryAllStoredMovieRequest) ProtoMessage()    {}
+func (*QueryAllStoredMovieRequest) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6a692c7f6b793183, []int{12}
+}
+func (m *QueryAllStoredMovieRequest) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllStoredMovieRequest) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllStoredMovieRequest.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllStoredMovieRequest) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllStoredMovieRequest.Merge(m, src)
+}
+func (m *QueryAllStoredMovieRequest) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllStoredMovieRequest) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllStoredMovieRequest.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllStoredMovieRequest proto.InternalMessageInfo
+
+func (m *QueryAllStoredMovieRequest) GetPagination() *query.PageRequest {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
+type QueryAllStoredMovieResponse struct {
+	StoredMovie []StoredMovie       `protobuf:"bytes,1,rep,name=storedMovie,proto3" json:"storedMovie"`
+	Pagination  *query.PageResponse `protobuf:"bytes,2,opt,name=pagination,proto3" json:"pagination,omitempty"`
+}
+
+func (m *QueryAllStoredMovieResponse) Reset()         { *m = QueryAllStoredMovieResponse{} }
+func (m *QueryAllStoredMovieResponse) String() string { return proto.CompactTextString(m) }
+func (*QueryAllStoredMovieResponse) ProtoMessage()    {}
+func (*QueryAllStoredMovieResponse) Descriptor() ([]byte, []int) {
+	return fileDescriptor_6a692c7f6b793183, []int{13}
+}
+func (m *QueryAllStoredMovieResponse) XXX_Unmarshal(b []byte) error {
+	return m.Unmarshal(b)
+}
+func (m *QueryAllStoredMovieResponse) XXX_Marshal(b []byte, deterministic bool) ([]byte, error) {
+	if deterministic {
+		return xxx_messageInfo_QueryAllStoredMovieResponse.Marshal(b, m, deterministic)
+	} else {
+		b = b[:cap(b)]
+		n, err := m.MarshalToSizedBuffer(b)
+		if err != nil {
+			return nil, err
+		}
+		return b[:n], nil
+	}
+}
+func (m *QueryAllStoredMovieResponse) XXX_Merge(src proto.Message) {
+	xxx_messageInfo_QueryAllStoredMovieResponse.Merge(m, src)
+}
+func (m *QueryAllStoredMovieResponse) XXX_Size() int {
+	return m.Size()
+}
+func (m *QueryAllStoredMovieResponse) XXX_DiscardUnknown() {
+	xxx_messageInfo_QueryAllStoredMovieResponse.DiscardUnknown(m)
+}
+
+var xxx_messageInfo_QueryAllStoredMovieResponse proto.InternalMessageInfo
+
+func (m *QueryAllStoredMovieResponse) GetStoredMovie() []StoredMovie {
+	if m != nil {
+		return m.StoredMovie
+	}
+	return nil
+}
+
+func (m *QueryAllStoredMovieResponse) GetPagination() *query.PageResponse {
+	if m != nil {
+		return m.Pagination
+	}
+	return nil
+}
+
 func init() {
 	proto.RegisterType((*QueryParamsRequest)(nil), "movie.movie.QueryParamsRequest")
 	proto.RegisterType((*QueryParamsResponse)(nil), "movie.movie.QueryParamsResponse")
@@ -492,47 +676,60 @@ func init() {
 	proto.RegisterType((*QueryGetReviewResponse)(nil), "movie.movie.QueryGetReviewResponse")
 	proto.RegisterType((*QueryAllReviewRequest)(nil), "movie.movie.QueryAllReviewRequest")
 	proto.RegisterType((*QueryAllReviewResponse)(nil), "movie.movie.QueryAllReviewResponse")
+	proto.RegisterType((*QueryGetStoredMovieRequest)(nil), "movie.movie.QueryGetStoredMovieRequest")
+	proto.RegisterType((*QueryGetStoredMovieResponse)(nil), "movie.movie.QueryGetStoredMovieResponse")
+	proto.RegisterType((*QueryAllStoredMovieRequest)(nil), "movie.movie.QueryAllStoredMovieRequest")
+	proto.RegisterType((*QueryAllStoredMovieResponse)(nil), "movie.movie.QueryAllStoredMovieResponse")
 }
 
 func init() { proto.RegisterFile("movie/movie/query.proto", fileDescriptor_6a692c7f6b793183) }
 
 var fileDescriptor_6a692c7f6b793183 = []byte{
-	// 553 bytes of a gzipped FileDescriptorProto
-	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x94, 0xc1, 0x6e, 0xd3, 0x40,
-	0x10, 0x86, 0xe3, 0x34, 0x8d, 0x60, 0x2b, 0x71, 0x98, 0xa4, 0x34, 0x18, 0xe4, 0x84, 0x45, 0x6a,
-	0x11, 0x12, 0x5e, 0xa5, 0x3c, 0x41, 0x7b, 0x20, 0x48, 0x08, 0xa9, 0xf8, 0xc8, 0x01, 0xe4, 0x90,
-	0x95, 0xb1, 0xe4, 0x78, 0x9d, 0xac, 0x1b, 0xa8, 0x10, 0x17, 0x9e, 0xa0, 0x12, 0xbc, 0x0c, 0x6f,
-	0xd0, 0x63, 0x25, 0x2e, 0x9c, 0x10, 0x4a, 0x78, 0x90, 0xca, 0x3b, 0x1b, 0x39, 0x6b, 0x3b, 0x6d,
-	0x0f, 0xb9, 0x58, 0xc9, 0xee, 0x3f, 0xf3, 0xfd, 0x3b, 0xb3, 0xb3, 0x64, 0x6f, 0x2c, 0x66, 0x21,
-	0x67, 0xf8, 0x9d, 0x9c, 0xf2, 0xe9, 0x99, 0x9b, 0x4c, 0x45, 0x2a, 0x60, 0x47, 0x2d, 0xb9, 0xea,
-	0x6b, 0xb7, 0x03, 0x11, 0x08, 0xb5, 0xce, 0xb2, 0x5f, 0x28, 0xb1, 0x1f, 0x05, 0x42, 0x04, 0x11,
-	0x67, 0x7e, 0x12, 0x32, 0x3f, 0x8e, 0x45, 0xea, 0xa7, 0xa1, 0x88, 0xa5, 0xde, 0x7d, 0xf6, 0x51,
-	0xc8, 0xb1, 0x90, 0x6c, 0xe8, 0x4b, 0x9d, 0x99, 0xcd, 0xfa, 0x43, 0x9e, 0xfa, 0x7d, 0x96, 0xf8,
-	0x41, 0x18, 0x2b, 0xb1, 0xd6, 0x76, 0x56, 0x5d, 0x24, 0xfe, 0xd4, 0x1f, 0x2f, 0xb3, 0x18, 0xfe,
-	0xd0, 0x52, 0x45, 0xc8, 0x94, 0xcf, 0x42, 0xfe, 0x19, 0x77, 0x68, 0x9b, 0xc0, 0xdb, 0x0c, 0x77,
-	0xa2, 0xf2, 0x78, 0x7c, 0x72, 0xca, 0x65, 0x4a, 0x5f, 0x91, 0x96, 0xb1, 0x2a, 0x13, 0x11, 0x4b,
-	0x0e, 0x7d, 0xd2, 0x44, 0x5e, 0xc7, 0xea, 0x59, 0x4f, 0x77, 0x0e, 0x5b, 0xee, 0xca, 0xb9, 0x5d,
-	0x14, 0x1f, 0x37, 0x2e, 0xfe, 0x76, 0x6b, 0x9e, 0x16, 0xd2, 0x7d, 0xd2, 0x56, 0x99, 0x06, 0x3c,
-	0x7d, 0x93, 0xa9, 0x34, 0x01, 0xee, 0x91, 0x7a, 0x38, 0x52, 0x69, 0x1a, 0x5e, 0x3d, 0x1c, 0xd1,
-	0x01, 0xd9, 0x2d, 0xe8, 0x34, 0xd3, 0x25, 0xdb, 0x6a, 0x41, 0x23, 0xc1, 0x40, 0xaa, 0x1d, 0x4d,
-	0x44, 0x19, 0x7d, 0xaf, 0x81, 0x47, 0x51, 0x64, 0x00, 0x5f, 0x12, 0x92, 0x57, 0x52, 0x27, 0xdb,
-	0x77, 0xb1, 0xec, 0x6e, 0x56, 0x76, 0x17, 0x1b, 0xaa, 0xcb, 0xee, 0x9e, 0xf8, 0xc1, 0x32, 0xd6,
-	0x5b, 0x89, 0xa4, 0xe7, 0x96, 0x76, 0x9a, 0x03, 0xca, 0x4e, 0xb7, 0x6e, 0xe1, 0x14, 0x06, 0x86,
-	0xa3, 0xba, 0x72, 0x74, 0x70, 0xa3, 0x23, 0x84, 0x19, 0x96, 0x0e, 0xf2, 0xda, 0x79, 0xaa, 0xb7,
-	0xeb, 0x8a, 0xfc, 0x9a, 0xdc, 0x2f, 0x0a, 0xf3, 0xce, 0xe2, 0x4a, 0x65, 0x67, 0x71, 0x6b, 0xd9,
-	0x59, 0xfc, 0x47, 0x3f, 0xe4, 0x75, 0x30, 0xa9, 0x9b, 0xaa, 0xf4, 0x4f, 0x4b, 0xdb, 0x5d, 0x21,
-	0x54, 0xd8, 0xdd, 0xba, 0x95, 0xdd, 0x8d, 0x55, 0xfb, 0xf0, 0x57, 0x83, 0x6c, 0x2b, 0x5b, 0xf0,
-	0x89, 0x34, 0xf1, 0xce, 0x43, 0xd7, 0xe0, 0x97, 0x07, 0xca, 0xee, 0xad, 0x17, 0x20, 0x82, 0x3e,
-	0xfc, 0xfe, 0xfb, 0xff, 0x8f, 0xfa, 0x2e, 0xb4, 0x58, 0x79, 0xbc, 0x41, 0xe8, 0xab, 0x05, 0x8f,
-	0xcb, 0x79, 0x0a, 0x93, 0x65, 0xd3, 0xeb, 0x24, 0x1a, 0xd6, 0x55, 0xb0, 0x07, 0xb0, 0xc7, 0x4a,
-	0x2f, 0x06, 0xfb, 0x1a, 0x8e, 0xbe, 0xc1, 0x98, 0xdc, 0x51, 0x11, 0x47, 0x51, 0x54, 0xc5, 0x2c,
-	0x0c, 0x57, 0x15, 0xb3, 0x38, 0x1e, 0xd4, 0x56, 0xcc, 0x36, 0x40, 0x99, 0x09, 0x72, 0xd9, 0x4f,
-	0xa8, 0x76, 0x6f, 0x5c, 0x30, 0xfb, 0xc9, 0xb5, 0x1a, 0x8d, 0xeb, 0x29, 0x9c, 0x0d, 0x1d, 0x56,
-	0x7e, 0xfb, 0xf0, 0x8c, 0x13, 0x72, 0x17, 0x63, 0xb2, 0x43, 0x56, 0x9f, 0xe0, 0x46, 0x6e, 0xe9,
-	0x6a, 0xae, 0xe9, 0x23, 0x72, 0x8f, 0x9f, 0x5f, 0xcc, 0x1d, 0xeb, 0x72, 0xee, 0x58, 0xff, 0xe6,
-	0x8e, 0x75, 0xbe, 0x70, 0x6a, 0x97, 0x0b, 0xa7, 0xf6, 0x67, 0xe1, 0xd4, 0xde, 0xb5, 0x50, 0xf7,
-	0x45, 0xeb, 0xd3, 0xb3, 0x84, 0xcb, 0x61, 0x53, 0xbd, 0xd1, 0x2f, 0xae, 0x02, 0x00, 0x00, 0xff,
-	0xff, 0x56, 0x28, 0x61, 0x6f, 0x78, 0x06, 0x00, 0x00,
+	// 697 bytes of a gzipped FileDescriptorProto
+	0x1f, 0x8b, 0x08, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0xff, 0xac, 0x96, 0xcf, 0x6e, 0xd3, 0x4e,
+	0x10, 0xc7, 0xe3, 0xb4, 0x8d, 0x7e, 0xdd, 0x48, 0x3d, 0x6c, 0xd2, 0x5f, 0x53, 0x17, 0xb9, 0xed,
+	0x56, 0x6a, 0x0a, 0x12, 0x5e, 0xb5, 0xbc, 0x00, 0xe9, 0x81, 0x20, 0x21, 0xa4, 0x62, 0x6e, 0x1c,
+	0x88, 0x1c, 0xb2, 0x32, 0x96, 0x9c, 0xac, 0x13, 0xbb, 0x81, 0xaa, 0xea, 0x85, 0x03, 0x17, 0x2e,
+	0x95, 0xe0, 0x21, 0x78, 0x94, 0x1e, 0x23, 0x71, 0xe1, 0x84, 0x50, 0xc2, 0x83, 0x20, 0xef, 0x4e,
+	0xe4, 0x7f, 0xeb, 0x26, 0x48, 0xb9, 0x44, 0xf5, 0xee, 0x77, 0xf6, 0xf3, 0x9d, 0x19, 0xef, 0xb8,
+	0x68, 0xa7, 0xcf, 0xc7, 0x2e, 0xa3, 0xf2, 0x77, 0x78, 0xc9, 0x46, 0x57, 0xa6, 0x3f, 0xe2, 0x21,
+	0xc7, 0x55, 0xb1, 0x64, 0x8a, 0x5f, 0xbd, 0xee, 0x70, 0x87, 0x8b, 0x75, 0x1a, 0xfd, 0x25, 0x25,
+	0xfa, 0x03, 0x87, 0x73, 0xc7, 0x63, 0xd4, 0xf6, 0x5d, 0x6a, 0x0f, 0x06, 0x3c, 0xb4, 0x43, 0x97,
+	0x0f, 0x02, 0xd8, 0x7d, 0xf4, 0x8e, 0x07, 0x7d, 0x1e, 0xd0, 0xae, 0x1d, 0xc0, 0xc9, 0x74, 0x7c,
+	0xda, 0x65, 0xa1, 0x7d, 0x4a, 0x7d, 0xdb, 0x71, 0x07, 0x42, 0x0c, 0xda, 0x46, 0xd2, 0x85, 0x6f,
+	0x8f, 0xec, 0xfe, 0xfc, 0x94, 0x94, 0x3f, 0x69, 0x49, 0x11, 0x32, 0x62, 0x63, 0x97, 0x7d, 0x80,
+	0x1d, 0x23, 0xb9, 0x13, 0x84, 0x7c, 0xc4, 0x7a, 0x9d, 0x44, 0x24, 0xa9, 0x23, 0xfc, 0x2a, 0xb2,
+	0x73, 0x21, 0x38, 0x16, 0x1b, 0x5e, 0xb2, 0x20, 0x24, 0xcf, 0x51, 0x2d, 0xb5, 0x1a, 0xf8, 0x7c,
+	0x10, 0x30, 0x7c, 0x8a, 0x2a, 0xd2, 0x4f, 0x43, 0x3b, 0xd0, 0x4e, 0xaa, 0x67, 0x35, 0x33, 0x51,
+	0x17, 0x53, 0x8a, 0xcf, 0xd7, 0xef, 0x7e, 0xed, 0x97, 0x2c, 0x10, 0x92, 0x63, 0x54, 0x17, 0x27,
+	0xb5, 0x59, 0xf8, 0x32, 0x52, 0x01, 0x01, 0x6f, 0xa1, 0xb2, 0xdb, 0x13, 0xc7, 0xac, 0x5b, 0x65,
+	0xb7, 0x47, 0xda, 0x68, 0x3b, 0xa3, 0x03, 0xa6, 0x89, 0x36, 0xc4, 0x02, 0x20, 0x71, 0x0a, 0x29,
+	0x76, 0x80, 0x28, 0x65, 0xe4, 0x2d, 0x00, 0x5b, 0x9e, 0x97, 0x02, 0x3e, 0x43, 0x28, 0xae, 0x34,
+	0x1c, 0x76, 0x6c, 0xca, 0xb6, 0x98, 0x51, 0x5b, 0x4c, 0xd9, 0x70, 0x68, 0x8b, 0x79, 0x61, 0x3b,
+	0xf3, 0x58, 0x2b, 0x11, 0x49, 0x6e, 0x35, 0x70, 0x1a, 0x03, 0xf2, 0x4e, 0xd7, 0x96, 0x70, 0x8a,
+	0xdb, 0x29, 0x47, 0x65, 0xe1, 0xa8, 0xb9, 0xd0, 0x91, 0x84, 0xa5, 0x2c, 0x35, 0xe3, 0xda, 0x59,
+	0xa2, 0xf7, 0x45, 0x45, 0x7e, 0x81, 0xfe, 0xcf, 0x0a, 0xe3, 0xce, 0xca, 0x15, 0x65, 0x67, 0xe5,
+	0xd6, 0xbc, 0xb3, 0xf2, 0x89, 0x74, 0xe2, 0x3a, 0xa4, 0xa9, 0xab, 0xaa, 0xf4, 0x37, 0x0d, 0xec,
+	0x26, 0x08, 0x0a, 0xbb, 0x6b, 0x4b, 0xd9, 0x5d, 0x5d, 0xb5, 0xcf, 0x90, 0x3e, 0x2f, 0xe2, 0x6b,
+	0x71, 0x9f, 0x52, 0xaf, 0x59, 0x1d, 0x6d, 0x84, 0x6e, 0xe8, 0xc9, 0xd7, 0x75, 0xd3, 0x92, 0x0f,
+	0xa4, 0x83, 0xf6, 0x94, 0x31, 0x90, 0xce, 0x53, 0x54, 0x0d, 0xe2, 0x65, 0x28, 0x59, 0x23, 0x95,
+	0x53, 0x22, 0x0c, 0x12, 0x4b, 0x86, 0x90, 0x1e, 0x98, 0x6a, 0x79, 0x9e, 0xc2, 0xd4, 0xaa, 0x3a,
+	0xf2, 0x5d, 0x83, 0x3c, 0xb2, 0x98, 0xa2, 0x3c, 0xd6, 0xfe, 0x31, 0x8f, 0x95, 0x75, 0xe9, 0x6c,
+	0x52, 0x41, 0x1b, 0xc2, 0x2a, 0x7e, 0x8f, 0x2a, 0x72, 0x32, 0xe1, 0xfd, 0x94, 0x93, 0xfc, 0xd8,
+	0xd3, 0x0f, 0x8a, 0x05, 0x12, 0x41, 0xf6, 0x3e, 0xfd, 0xf8, 0xf3, 0xb5, 0xbc, 0x8d, 0x6b, 0x34,
+	0x3f, 0xa4, 0x31, 0x87, 0x01, 0x80, 0x0f, 0xf3, 0xe7, 0x64, 0xe6, 0x9f, 0x4e, 0xee, 0x93, 0x00,
+	0x6c, 0x5f, 0xc0, 0x76, 0xf1, 0x0e, 0xcd, 0xcd, 0x7d, 0x7a, 0xed, 0xf6, 0x6e, 0x70, 0x1f, 0xfd,
+	0x27, 0x22, 0x5a, 0x9e, 0xa7, 0x62, 0x66, 0x46, 0xa0, 0x8a, 0x99, 0x1d, 0x62, 0x44, 0x17, 0xcc,
+	0x3a, 0xc6, 0x79, 0x26, 0x0e, 0xe6, 0xb7, 0x0e, 0xab, 0xdd, 0xa7, 0xc6, 0x80, 0x7e, 0x74, 0xaf,
+	0x06, 0x70, 0x07, 0x02, 0xa7, 0xe3, 0x06, 0xcd, 0x7f, 0xc1, 0x64, 0x8e, 0x43, 0xb4, 0x29, 0x63,
+	0xa2, 0x24, 0xd5, 0x19, 0x2c, 0xe4, 0xe6, 0x06, 0x48, 0x41, 0x1f, 0x25, 0x17, 0x7f, 0xd1, 0x50,
+	0x35, 0xf1, 0x9e, 0xe2, 0xa6, 0x32, 0x93, 0xfc, 0x3d, 0xd3, 0x4f, 0x16, 0x0b, 0x81, 0xff, 0x50,
+	0xf0, 0x8f, 0xf0, 0x21, 0x2d, 0xfa, 0x3e, 0xd3, 0x6b, 0x31, 0x3a, 0x6e, 0xf0, 0x67, 0x0d, 0x6d,
+	0x25, 0x8e, 0x88, 0xca, 0xd0, 0x54, 0xa6, 0xb8, 0x9c, 0x21, 0xf5, 0xd5, 0x25, 0x87, 0xc2, 0xd0,
+	0x1e, 0xde, 0x2d, 0x34, 0x74, 0xfe, 0xf8, 0x6e, 0x6a, 0x68, 0x93, 0xa9, 0xa1, 0xfd, 0x9e, 0x1a,
+	0xda, 0xed, 0xcc, 0x28, 0x4d, 0x66, 0x46, 0xe9, 0xe7, 0xcc, 0x28, 0xbd, 0xa9, 0x49, 0xf5, 0x47,
+	0x88, 0x0a, 0xaf, 0x7c, 0x16, 0x74, 0x2b, 0xe2, 0x1f, 0x8c, 0x27, 0x7f, 0x03, 0x00, 0x00, 0xff,
+	0xff, 0xea, 0xc7, 0xdc, 0x5d, 0x55, 0x09, 0x00, 0x00,
 }
 
 // Reference imports to suppress errors if they are not otherwise used.
@@ -557,6 +754,10 @@ type QueryClient interface {
 	Review(ctx context.Context, in *QueryGetReviewRequest, opts ...grpc.CallOption) (*QueryGetReviewResponse, error)
 	// Queries a list of Review items.
 	ReviewAll(ctx context.Context, in *QueryAllReviewRequest, opts ...grpc.CallOption) (*QueryAllReviewResponse, error)
+	// Queries a StoredMovie by index.
+	StoredMovie(ctx context.Context, in *QueryGetStoredMovieRequest, opts ...grpc.CallOption) (*QueryGetStoredMovieResponse, error)
+	// Queries a list of StoredMovie items.
+	StoredMovieAll(ctx context.Context, in *QueryAllStoredMovieRequest, opts ...grpc.CallOption) (*QueryAllStoredMovieResponse, error)
 }
 
 type queryClient struct {
@@ -612,6 +813,24 @@ func (c *queryClient) ReviewAll(ctx context.Context, in *QueryAllReviewRequest, 
 	return out, nil
 }
 
+func (c *queryClient) StoredMovie(ctx context.Context, in *QueryGetStoredMovieRequest, opts ...grpc.CallOption) (*QueryGetStoredMovieResponse, error) {
+	out := new(QueryGetStoredMovieResponse)
+	err := c.cc.Invoke(ctx, "/movie.movie.Query/StoredMovie", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *queryClient) StoredMovieAll(ctx context.Context, in *QueryAllStoredMovieRequest, opts ...grpc.CallOption) (*QueryAllStoredMovieResponse, error) {
+	out := new(QueryAllStoredMovieResponse)
+	err := c.cc.Invoke(ctx, "/movie.movie.Query/StoredMovieAll", in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // QueryServer is the server API for Query service.
 type QueryServer interface {
 	// Parameters queries the parameters of the module.
@@ -624,6 +843,10 @@ type QueryServer interface {
 	Review(context.Context, *QueryGetReviewRequest) (*QueryGetReviewResponse, error)
 	// Queries a list of Review items.
 	ReviewAll(context.Context, *QueryAllReviewRequest) (*QueryAllReviewResponse, error)
+	// Queries a StoredMovie by index.
+	StoredMovie(context.Context, *QueryGetStoredMovieRequest) (*QueryGetStoredMovieResponse, error)
+	// Queries a list of StoredMovie items.
+	StoredMovieAll(context.Context, *QueryAllStoredMovieRequest) (*QueryAllStoredMovieResponse, error)
 }
 
 // UnimplementedQueryServer can be embedded to have forward compatible implementations.
@@ -644,6 +867,12 @@ func (*UnimplementedQueryServer) Review(ctx context.Context, req *QueryGetReview
 }
 func (*UnimplementedQueryServer) ReviewAll(ctx context.Context, req *QueryAllReviewRequest) (*QueryAllReviewResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReviewAll not implemented")
+}
+func (*UnimplementedQueryServer) StoredMovie(ctx context.Context, req *QueryGetStoredMovieRequest) (*QueryGetStoredMovieResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StoredMovie not implemented")
+}
+func (*UnimplementedQueryServer) StoredMovieAll(ctx context.Context, req *QueryAllStoredMovieRequest) (*QueryAllStoredMovieResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method StoredMovieAll not implemented")
 }
 
 func RegisterQueryServer(s grpc1.Server, srv QueryServer) {
@@ -740,6 +969,42 @@ func _Query_ReviewAll_Handler(srv interface{}, ctx context.Context, dec func(int
 	return interceptor(ctx, in, info, handler)
 }
 
+func _Query_StoredMovie_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryGetStoredMovieRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).StoredMovie(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/movie.movie.Query/StoredMovie",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).StoredMovie(ctx, req.(*QueryGetStoredMovieRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _Query_StoredMovieAll_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(QueryAllStoredMovieRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(QueryServer).StoredMovieAll(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: "/movie.movie.Query/StoredMovieAll",
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(QueryServer).StoredMovieAll(ctx, req.(*QueryAllStoredMovieRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 var _Query_serviceDesc = grpc.ServiceDesc{
 	ServiceName: "movie.movie.Query",
 	HandlerType: (*QueryServer)(nil),
@@ -763,6 +1028,14 @@ var _Query_serviceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReviewAll",
 			Handler:    _Query_ReviewAll_Handler,
+		},
+		{
+			MethodName: "StoredMovie",
+			Handler:    _Query_StoredMovie_Handler,
+		},
+		{
+			MethodName: "StoredMovieAll",
+			Handler:    _Query_StoredMovieAll_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
@@ -1115,6 +1388,153 @@ func (m *QueryAllReviewResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) 
 	return len(dAtA) - i, nil
 }
 
+func (m *QueryGetStoredMovieRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetStoredMovieRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetStoredMovieRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if len(m.Title) > 0 {
+		i -= len(m.Title)
+		copy(dAtA[i:], m.Title)
+		i = encodeVarintQuery(dAtA, i, uint64(len(m.Title)))
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryGetStoredMovieResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryGetStoredMovieResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryGetStoredMovieResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	{
+		size, err := m.StoredMovie.MarshalToSizedBuffer(dAtA[:i])
+		if err != nil {
+			return 0, err
+		}
+		i -= size
+		i = encodeVarintQuery(dAtA, i, uint64(size))
+	}
+	i--
+	dAtA[i] = 0xa
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllStoredMovieRequest) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllStoredMovieRequest) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllStoredMovieRequest) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0xa
+	}
+	return len(dAtA) - i, nil
+}
+
+func (m *QueryAllStoredMovieResponse) Marshal() (dAtA []byte, err error) {
+	size := m.Size()
+	dAtA = make([]byte, size)
+	n, err := m.MarshalToSizedBuffer(dAtA[:size])
+	if err != nil {
+		return nil, err
+	}
+	return dAtA[:n], nil
+}
+
+func (m *QueryAllStoredMovieResponse) MarshalTo(dAtA []byte) (int, error) {
+	size := m.Size()
+	return m.MarshalToSizedBuffer(dAtA[:size])
+}
+
+func (m *QueryAllStoredMovieResponse) MarshalToSizedBuffer(dAtA []byte) (int, error) {
+	i := len(dAtA)
+	_ = i
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		{
+			size, err := m.Pagination.MarshalToSizedBuffer(dAtA[:i])
+			if err != nil {
+				return 0, err
+			}
+			i -= size
+			i = encodeVarintQuery(dAtA, i, uint64(size))
+		}
+		i--
+		dAtA[i] = 0x12
+	}
+	if len(m.StoredMovie) > 0 {
+		for iNdEx := len(m.StoredMovie) - 1; iNdEx >= 0; iNdEx-- {
+			{
+				size, err := m.StoredMovie[iNdEx].MarshalToSizedBuffer(dAtA[:i])
+				if err != nil {
+					return 0, err
+				}
+				i -= size
+				i = encodeVarintQuery(dAtA, i, uint64(size))
+			}
+			i--
+			dAtA[i] = 0xa
+		}
+	}
+	return len(dAtA) - i, nil
+}
+
 func encodeVarintQuery(dAtA []byte, offset int, v uint64) int {
 	offset -= sovQuery(v)
 	base := offset
@@ -1245,6 +1665,62 @@ func (m *QueryAllReviewResponse) Size() (n int) {
 	_ = l
 	if len(m.Review) > 0 {
 		for _, e := range m.Review {
+			l = e.Size()
+			n += 1 + l + sovQuery(uint64(l))
+		}
+	}
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetStoredMovieRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = len(m.Title)
+	if l > 0 {
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryGetStoredMovieResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	l = m.StoredMovie.Size()
+	n += 1 + l + sovQuery(uint64(l))
+	return n
+}
+
+func (m *QueryAllStoredMovieRequest) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if m.Pagination != nil {
+		l = m.Pagination.Size()
+		n += 1 + l + sovQuery(uint64(l))
+	}
+	return n
+}
+
+func (m *QueryAllStoredMovieResponse) Size() (n int) {
+	if m == nil {
+		return 0
+	}
+	var l int
+	_ = l
+	if len(m.StoredMovie) > 0 {
+		for _, e := range m.StoredMovie {
 			l = e.Size()
 			n += 1 + l + sovQuery(uint64(l))
 		}
@@ -2051,6 +2527,377 @@ func (m *QueryAllReviewResponse) Unmarshal(dAtA []byte) error {
 			}
 			m.Review = append(m.Review, Review{})
 			if err := m.Review[len(m.Review)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		case 2:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageResponse{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetStoredMovieRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetStoredMovieRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetStoredMovieRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Title", wireType)
+			}
+			var stringLen uint64
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				stringLen |= uint64(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			intStringLen := int(stringLen)
+			if intStringLen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + intStringLen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.Title = string(dAtA[iNdEx:postIndex])
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryGetStoredMovieResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryGetStoredMovieResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryGetStoredMovieResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StoredMovie", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if err := m.StoredMovie.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllStoredMovieRequest) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllStoredMovieRequest: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllStoredMovieRequest: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field Pagination", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			if m.Pagination == nil {
+				m.Pagination = &query.PageRequest{}
+			}
+			if err := m.Pagination.Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
+				return err
+			}
+			iNdEx = postIndex
+		default:
+			iNdEx = preIndex
+			skippy, err := skipQuery(dAtA[iNdEx:])
+			if err != nil {
+				return err
+			}
+			if (skippy < 0) || (iNdEx+skippy) < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if (iNdEx + skippy) > l {
+				return io.ErrUnexpectedEOF
+			}
+			iNdEx += skippy
+		}
+	}
+
+	if iNdEx > l {
+		return io.ErrUnexpectedEOF
+	}
+	return nil
+}
+func (m *QueryAllStoredMovieResponse) Unmarshal(dAtA []byte) error {
+	l := len(dAtA)
+	iNdEx := 0
+	for iNdEx < l {
+		preIndex := iNdEx
+		var wire uint64
+		for shift := uint(0); ; shift += 7 {
+			if shift >= 64 {
+				return ErrIntOverflowQuery
+			}
+			if iNdEx >= l {
+				return io.ErrUnexpectedEOF
+			}
+			b := dAtA[iNdEx]
+			iNdEx++
+			wire |= uint64(b&0x7F) << shift
+			if b < 0x80 {
+				break
+			}
+		}
+		fieldNum := int32(wire >> 3)
+		wireType := int(wire & 0x7)
+		if wireType == 4 {
+			return fmt.Errorf("proto: QueryAllStoredMovieResponse: wiretype end group for non-group")
+		}
+		if fieldNum <= 0 {
+			return fmt.Errorf("proto: QueryAllStoredMovieResponse: illegal tag %d (wire type %d)", fieldNum, wire)
+		}
+		switch fieldNum {
+		case 1:
+			if wireType != 2 {
+				return fmt.Errorf("proto: wrong wireType = %d for field StoredMovie", wireType)
+			}
+			var msglen int
+			for shift := uint(0); ; shift += 7 {
+				if shift >= 64 {
+					return ErrIntOverflowQuery
+				}
+				if iNdEx >= l {
+					return io.ErrUnexpectedEOF
+				}
+				b := dAtA[iNdEx]
+				iNdEx++
+				msglen |= int(b&0x7F) << shift
+				if b < 0x80 {
+					break
+				}
+			}
+			if msglen < 0 {
+				return ErrInvalidLengthQuery
+			}
+			postIndex := iNdEx + msglen
+			if postIndex < 0 {
+				return ErrInvalidLengthQuery
+			}
+			if postIndex > l {
+				return io.ErrUnexpectedEOF
+			}
+			m.StoredMovie = append(m.StoredMovie, StoredMovie{})
+			if err := m.StoredMovie[len(m.StoredMovie)-1].Unmarshal(dAtA[iNdEx:postIndex]); err != nil {
 				return err
 			}
 			iNdEx = postIndex

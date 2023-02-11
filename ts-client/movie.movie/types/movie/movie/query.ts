@@ -5,6 +5,7 @@ import { PageRequest, PageResponse } from "../../cosmos/base/query/v1beta1/pagin
 import { Movie } from "./movie";
 import { Params } from "./params";
 import { Review } from "./review";
+import { StoredMovie } from "./stored_movie";
 
 export const protobufPackage = "movie.movie";
 
@@ -49,6 +50,23 @@ export interface QueryAllReviewRequest {
 
 export interface QueryAllReviewResponse {
   Review: Review[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetStoredMovieRequest {
+  title: string;
+}
+
+export interface QueryGetStoredMovieResponse {
+  storedMovie: StoredMovie | undefined;
+}
+
+export interface QueryAllStoredMovieRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryAllStoredMovieResponse {
+  storedMovie: StoredMovie[];
   pagination: PageResponse | undefined;
 }
 
@@ -560,6 +578,220 @@ export const QueryAllReviewResponse = {
   },
 };
 
+function createBaseQueryGetStoredMovieRequest(): QueryGetStoredMovieRequest {
+  return { title: "" };
+}
+
+export const QueryGetStoredMovieRequest = {
+  encode(message: QueryGetStoredMovieRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.title !== "") {
+      writer.uint32(10).string(message.title);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetStoredMovieRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetStoredMovieRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.title = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetStoredMovieRequest {
+    return { title: isSet(object.title) ? String(object.title) : "" };
+  },
+
+  toJSON(message: QueryGetStoredMovieRequest): unknown {
+    const obj: any = {};
+    message.title !== undefined && (obj.title = message.title);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryGetStoredMovieRequest>, I>>(object: I): QueryGetStoredMovieRequest {
+    const message = createBaseQueryGetStoredMovieRequest();
+    message.title = object.title ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetStoredMovieResponse(): QueryGetStoredMovieResponse {
+  return { storedMovie: undefined };
+}
+
+export const QueryGetStoredMovieResponse = {
+  encode(message: QueryGetStoredMovieResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.storedMovie !== undefined) {
+      StoredMovie.encode(message.storedMovie, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetStoredMovieResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetStoredMovieResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.storedMovie = StoredMovie.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetStoredMovieResponse {
+    return { storedMovie: isSet(object.storedMovie) ? StoredMovie.fromJSON(object.storedMovie) : undefined };
+  },
+
+  toJSON(message: QueryGetStoredMovieResponse): unknown {
+    const obj: any = {};
+    message.storedMovie !== undefined
+      && (obj.storedMovie = message.storedMovie ? StoredMovie.toJSON(message.storedMovie) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryGetStoredMovieResponse>, I>>(object: I): QueryGetStoredMovieResponse {
+    const message = createBaseQueryGetStoredMovieResponse();
+    message.storedMovie = (object.storedMovie !== undefined && object.storedMovie !== null)
+      ? StoredMovie.fromPartial(object.storedMovie)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllStoredMovieRequest(): QueryAllStoredMovieRequest {
+  return { pagination: undefined };
+}
+
+export const QueryAllStoredMovieRequest = {
+  encode(message: QueryAllStoredMovieRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllStoredMovieRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllStoredMovieRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllStoredMovieRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryAllStoredMovieRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryAllStoredMovieRequest>, I>>(object: I): QueryAllStoredMovieRequest {
+    const message = createBaseQueryAllStoredMovieRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllStoredMovieResponse(): QueryAllStoredMovieResponse {
+  return { storedMovie: [], pagination: undefined };
+}
+
+export const QueryAllStoredMovieResponse = {
+  encode(message: QueryAllStoredMovieResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.storedMovie) {
+      StoredMovie.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllStoredMovieResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllStoredMovieResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.storedMovie.push(StoredMovie.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllStoredMovieResponse {
+    return {
+      storedMovie: Array.isArray(object?.storedMovie)
+        ? object.storedMovie.map((e: any) => StoredMovie.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryAllStoredMovieResponse): unknown {
+    const obj: any = {};
+    if (message.storedMovie) {
+      obj.storedMovie = message.storedMovie.map((e) => e ? StoredMovie.toJSON(e) : undefined);
+    } else {
+      obj.storedMovie = [];
+    }
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryAllStoredMovieResponse>, I>>(object: I): QueryAllStoredMovieResponse {
+    const message = createBaseQueryAllStoredMovieResponse();
+    message.storedMovie = object.storedMovie?.map((e) => StoredMovie.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -572,6 +804,10 @@ export interface Query {
   Review(request: QueryGetReviewRequest): Promise<QueryGetReviewResponse>;
   /** Queries a list of Review items. */
   ReviewAll(request: QueryAllReviewRequest): Promise<QueryAllReviewResponse>;
+  /** Queries a StoredMovie by index. */
+  StoredMovie(request: QueryGetStoredMovieRequest): Promise<QueryGetStoredMovieResponse>;
+  /** Queries a list of StoredMovie items. */
+  StoredMovieAll(request: QueryAllStoredMovieRequest): Promise<QueryAllStoredMovieResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -583,6 +819,8 @@ export class QueryClientImpl implements Query {
     this.MovieAll = this.MovieAll.bind(this);
     this.Review = this.Review.bind(this);
     this.ReviewAll = this.ReviewAll.bind(this);
+    this.StoredMovie = this.StoredMovie.bind(this);
+    this.StoredMovieAll = this.StoredMovieAll.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -612,6 +850,18 @@ export class QueryClientImpl implements Query {
     const data = QueryAllReviewRequest.encode(request).finish();
     const promise = this.rpc.request("movie.movie.Query", "ReviewAll", data);
     return promise.then((data) => QueryAllReviewResponse.decode(new _m0.Reader(data)));
+  }
+
+  StoredMovie(request: QueryGetStoredMovieRequest): Promise<QueryGetStoredMovieResponse> {
+    const data = QueryGetStoredMovieRequest.encode(request).finish();
+    const promise = this.rpc.request("movie.movie.Query", "StoredMovie", data);
+    return promise.then((data) => QueryGetStoredMovieResponse.decode(new _m0.Reader(data)));
+  }
+
+  StoredMovieAll(request: QueryAllStoredMovieRequest): Promise<QueryAllStoredMovieResponse> {
+    const data = QueryAllStoredMovieRequest.encode(request).finish();
+    const promise = this.rpc.request("movie.movie.Query", "StoredMovieAll", data);
+    return promise.then((data) => QueryAllStoredMovieResponse.decode(new _m0.Reader(data)));
   }
 }
 

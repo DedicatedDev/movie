@@ -40,6 +40,14 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				ReviewCount: 2,
+				StoredMovieList: []types.StoredMovie{
+					{
+						Title: "0",
+					},
+					{
+						Title: "1",
+					},
+				},
 				// this line is used by starport scaffolding # types/genesis/validField
 			},
 			valid: true,
@@ -93,6 +101,20 @@ func TestGenesisState_Validate(t *testing.T) {
 					},
 				},
 				ReviewCount: 0,
+			},
+			valid: false,
+		},
+		{
+			desc: "duplicated storedMovie",
+			genState: &types.GenesisState{
+				StoredMovieList: []types.StoredMovie{
+					{
+						Title: "0",
+					},
+					{
+						Title: "0",
+					},
+				},
 			},
 			valid: false,
 		},

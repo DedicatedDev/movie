@@ -1,0 +1,11 @@
+syntax = "proto3";
+package movie.movie;
+
+option go_package = "movie/x/movie/types";
+
+message StoredMovie {
+  string title = 1; 
+  uint64 movieId = 2; 
+  
+}
+

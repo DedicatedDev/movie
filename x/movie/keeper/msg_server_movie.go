@@ -19,6 +19,8 @@ func (k msgServer) CreateMovie(goCtx context.Context, msg *types.MsgCreateMovie)
 		Year:        msg.Year,
 	}
 
+	//movies := k.Keeper.GetAllMovie(ctx)
+
 	id := k.AppendMovie(
 		ctx,
 		movie,

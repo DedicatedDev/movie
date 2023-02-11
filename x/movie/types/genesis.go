@@ -10,8 +10,9 @@ const DefaultIndex uint64 = 1
 // DefaultGenesis returns the default genesis state
 func DefaultGenesis() *GenesisState {
 	return &GenesisState{
-		MovieList:  []Movie{},
-		ReviewList: []Review{},
+		MovieList:       []Movie{},
+		ReviewList:      []Review{},
+		StoredMovieList: []StoredMovie{},
 		// this line is used by starport scaffolding # genesis/types/default
 		Params: DefaultParams(),
 	}
@@ -43,6 +44,16 @@ func (gs GenesisState) Validate() error {
 			return fmt.Errorf("review id should be lower or equal than the last id")
 		}
 		reviewIdMap[elem.Id] = true
+	}
+	// Check for duplicated index in storedMovie
+	storedMovieIndexMap := make(map[string]struct{})
+
+	for _, elem := range gs.StoredMovieList {
+		index := string(StoredMovieKey(elem.Title))
+		if _, ok := storedMovieIndexMap[index]; ok {
+			return fmt.Errorf("duplicated index for storedMovie")
+		}
+		storedMovieIndexMap[index] = struct{}{}
 	}
 	// this line is used by starport scaffolding # genesis/types/validate
 

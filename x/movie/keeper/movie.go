@@ -45,6 +45,7 @@ func (k Keeper) AppendMovie(
 
 	store := prefix.NewStore(ctx.KVStore(k.storeKey), types.KeyPrefix(types.MovieKey))
 	appendedValue := k.cdc.MustMarshal(&movie)
+
 	store.Set(GetMovieIDBytes(movie.Id), appendedValue)
 
 	// Update movie count
