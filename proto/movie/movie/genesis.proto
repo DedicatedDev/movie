@@ -6,6 +6,7 @@ import "movie/movie/params.proto";
 import "movie/movie/movie.proto";
 import "movie/movie/review.proto";
 import "movie/movie/stored_movie.proto";
+import "movie/movie/stored_review.proto";
 // this line is used by starport scaffolding # genesis/proto/import
 
 option go_package = "movie/x/movie/types";
@@ -18,5 +19,6 @@ message GenesisState {
   repeated Review reviewList = 4 [(gogoproto.nullable) = false];
   uint64 reviewCount = 5;
   repeated StoredMovie storedMovieList = 6 [(gogoproto.nullable) = false];
+  repeated StoredReview storedReviewList = 7 [(gogoproto.nullable) = false];
   // this line is used by starport scaffolding # genesis/proto/state
 }

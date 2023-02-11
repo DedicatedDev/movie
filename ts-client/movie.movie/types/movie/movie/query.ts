@@ -6,6 +6,7 @@ import { Movie } from "./movie";
 import { Params } from "./params";
 import { Review } from "./review";
 import { StoredMovie } from "./stored_movie";
+import { StoredReview } from "./stored_review";
 
 export const protobufPackage = "movie.movie";
 
@@ -67,6 +68,24 @@ export interface QueryAllStoredMovieRequest {
 
 export interface QueryAllStoredMovieResponse {
   storedMovie: StoredMovie[];
+  pagination: PageResponse | undefined;
+}
+
+export interface QueryGetStoredReviewRequest {
+  movieId: number;
+  creator: string;
+}
+
+export interface QueryGetStoredReviewResponse {
+  storedReview: StoredReview | undefined;
+}
+
+export interface QueryAllStoredReviewRequest {
+  pagination: PageRequest | undefined;
+}
+
+export interface QueryAllStoredReviewResponse {
+  storedReview: StoredReview[];
   pagination: PageResponse | undefined;
 }
 
@@ -792,6 +811,231 @@ export const QueryAllStoredMovieResponse = {
   },
 };
 
+function createBaseQueryGetStoredReviewRequest(): QueryGetStoredReviewRequest {
+  return { movieId: 0, creator: "" };
+}
+
+export const QueryGetStoredReviewRequest = {
+  encode(message: QueryGetStoredReviewRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.movieId !== 0) {
+      writer.uint32(8).uint64(message.movieId);
+    }
+    if (message.creator !== "") {
+      writer.uint32(18).string(message.creator);
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetStoredReviewRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetStoredReviewRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.movieId = longToNumber(reader.uint64() as Long);
+          break;
+        case 2:
+          message.creator = reader.string();
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetStoredReviewRequest {
+    return {
+      movieId: isSet(object.movieId) ? Number(object.movieId) : 0,
+      creator: isSet(object.creator) ? String(object.creator) : "",
+    };
+  },
+
+  toJSON(message: QueryGetStoredReviewRequest): unknown {
+    const obj: any = {};
+    message.movieId !== undefined && (obj.movieId = Math.round(message.movieId));
+    message.creator !== undefined && (obj.creator = message.creator);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryGetStoredReviewRequest>, I>>(object: I): QueryGetStoredReviewRequest {
+    const message = createBaseQueryGetStoredReviewRequest();
+    message.movieId = object.movieId ?? 0;
+    message.creator = object.creator ?? "";
+    return message;
+  },
+};
+
+function createBaseQueryGetStoredReviewResponse(): QueryGetStoredReviewResponse {
+  return { storedReview: undefined };
+}
+
+export const QueryGetStoredReviewResponse = {
+  encode(message: QueryGetStoredReviewResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.storedReview !== undefined) {
+      StoredReview.encode(message.storedReview, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryGetStoredReviewResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryGetStoredReviewResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.storedReview = StoredReview.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryGetStoredReviewResponse {
+    return { storedReview: isSet(object.storedReview) ? StoredReview.fromJSON(object.storedReview) : undefined };
+  },
+
+  toJSON(message: QueryGetStoredReviewResponse): unknown {
+    const obj: any = {};
+    message.storedReview !== undefined
+      && (obj.storedReview = message.storedReview ? StoredReview.toJSON(message.storedReview) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryGetStoredReviewResponse>, I>>(object: I): QueryGetStoredReviewResponse {
+    const message = createBaseQueryGetStoredReviewResponse();
+    message.storedReview = (object.storedReview !== undefined && object.storedReview !== null)
+      ? StoredReview.fromPartial(object.storedReview)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllStoredReviewRequest(): QueryAllStoredReviewRequest {
+  return { pagination: undefined };
+}
+
+export const QueryAllStoredReviewRequest = {
+  encode(message: QueryAllStoredReviewRequest, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    if (message.pagination !== undefined) {
+      PageRequest.encode(message.pagination, writer.uint32(10).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllStoredReviewRequest {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllStoredReviewRequest();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.pagination = PageRequest.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllStoredReviewRequest {
+    return { pagination: isSet(object.pagination) ? PageRequest.fromJSON(object.pagination) : undefined };
+  },
+
+  toJSON(message: QueryAllStoredReviewRequest): unknown {
+    const obj: any = {};
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageRequest.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryAllStoredReviewRequest>, I>>(object: I): QueryAllStoredReviewRequest {
+    const message = createBaseQueryAllStoredReviewRequest();
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageRequest.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
+function createBaseQueryAllStoredReviewResponse(): QueryAllStoredReviewResponse {
+  return { storedReview: [], pagination: undefined };
+}
+
+export const QueryAllStoredReviewResponse = {
+  encode(message: QueryAllStoredReviewResponse, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+    for (const v of message.storedReview) {
+      StoredReview.encode(v!, writer.uint32(10).fork()).ldelim();
+    }
+    if (message.pagination !== undefined) {
+      PageResponse.encode(message.pagination, writer.uint32(18).fork()).ldelim();
+    }
+    return writer;
+  },
+
+  decode(input: _m0.Reader | Uint8Array, length?: number): QueryAllStoredReviewResponse {
+    const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
+    let end = length === undefined ? reader.len : reader.pos + length;
+    const message = createBaseQueryAllStoredReviewResponse();
+    while (reader.pos < end) {
+      const tag = reader.uint32();
+      switch (tag >>> 3) {
+        case 1:
+          message.storedReview.push(StoredReview.decode(reader, reader.uint32()));
+          break;
+        case 2:
+          message.pagination = PageResponse.decode(reader, reader.uint32());
+          break;
+        default:
+          reader.skipType(tag & 7);
+          break;
+      }
+    }
+    return message;
+  },
+
+  fromJSON(object: any): QueryAllStoredReviewResponse {
+    return {
+      storedReview: Array.isArray(object?.storedReview)
+        ? object.storedReview.map((e: any) => StoredReview.fromJSON(e))
+        : [],
+      pagination: isSet(object.pagination) ? PageResponse.fromJSON(object.pagination) : undefined,
+    };
+  },
+
+  toJSON(message: QueryAllStoredReviewResponse): unknown {
+    const obj: any = {};
+    if (message.storedReview) {
+      obj.storedReview = message.storedReview.map((e) => e ? StoredReview.toJSON(e) : undefined);
+    } else {
+      obj.storedReview = [];
+    }
+    message.pagination !== undefined
+      && (obj.pagination = message.pagination ? PageResponse.toJSON(message.pagination) : undefined);
+    return obj;
+  },
+
+  fromPartial<I extends Exact<DeepPartial<QueryAllStoredReviewResponse>, I>>(object: I): QueryAllStoredReviewResponse {
+    const message = createBaseQueryAllStoredReviewResponse();
+    message.storedReview = object.storedReview?.map((e) => StoredReview.fromPartial(e)) || [];
+    message.pagination = (object.pagination !== undefined && object.pagination !== null)
+      ? PageResponse.fromPartial(object.pagination)
+      : undefined;
+    return message;
+  },
+};
+
 /** Query defines the gRPC querier service. */
 export interface Query {
   /** Parameters queries the parameters of the module. */
@@ -808,6 +1052,10 @@ export interface Query {
   StoredMovie(request: QueryGetStoredMovieRequest): Promise<QueryGetStoredMovieResponse>;
   /** Queries a list of StoredMovie items. */
   StoredMovieAll(request: QueryAllStoredMovieRequest): Promise<QueryAllStoredMovieResponse>;
+  /** Queries a StoredReview by index. */
+  StoredReview(request: QueryGetStoredReviewRequest): Promise<QueryGetStoredReviewResponse>;
+  /** Queries a list of StoredReview items. */
+  StoredReviewAll(request: QueryAllStoredReviewRequest): Promise<QueryAllStoredReviewResponse>;
 }
 
 export class QueryClientImpl implements Query {
@@ -821,6 +1069,8 @@ export class QueryClientImpl implements Query {
     this.ReviewAll = this.ReviewAll.bind(this);
     this.StoredMovie = this.StoredMovie.bind(this);
     this.StoredMovieAll = this.StoredMovieAll.bind(this);
+    this.StoredReview = this.StoredReview.bind(this);
+    this.StoredReviewAll = this.StoredReviewAll.bind(this);
   }
   Params(request: QueryParamsRequest): Promise<QueryParamsResponse> {
     const data = QueryParamsRequest.encode(request).finish();
@@ -862,6 +1112,18 @@ export class QueryClientImpl implements Query {
     const data = QueryAllStoredMovieRequest.encode(request).finish();
     const promise = this.rpc.request("movie.movie.Query", "StoredMovieAll", data);
     return promise.then((data) => QueryAllStoredMovieResponse.decode(new _m0.Reader(data)));
+  }
+
+  StoredReview(request: QueryGetStoredReviewRequest): Promise<QueryGetStoredReviewResponse> {
+    const data = QueryGetStoredReviewRequest.encode(request).finish();
+    const promise = this.rpc.request("movie.movie.Query", "StoredReview", data);
+    return promise.then((data) => QueryGetStoredReviewResponse.decode(new _m0.Reader(data)));
+  }
+
+  StoredReviewAll(request: QueryAllStoredReviewRequest): Promise<QueryAllStoredReviewResponse> {
+    const data = QueryAllStoredReviewRequest.encode(request).finish();
+    const promise = this.rpc.request("movie.movie.Query", "StoredReviewAll", data);
+    return promise.then((data) => QueryAllStoredReviewResponse.decode(new _m0.Reader(data)));
   }
 }
 

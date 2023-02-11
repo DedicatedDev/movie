@@ -88,6 +88,21 @@ export interface MovieQueryAllStoredMovieResponse {
   pagination?: V1Beta1PageResponse;
 }
 
+export interface MovieQueryAllStoredReviewResponse {
+  storedReview?: MovieStoredReview[];
+
+  /**
+   * PageResponse is to be embedded in gRPC response messages where the
+   * corresponding request message has used PageRequest.
+   *
+   *  message SomeResponse {
+   *          repeated Bar results = 1;
+   *          PageResponse page = 2;
+   *  }
+   */
+  pagination?: V1Beta1PageResponse;
+}
+
 export interface MovieQueryGetMovieResponse {
   Movie?: MovieMovie;
 }
@@ -98,6 +113,10 @@ export interface MovieQueryGetReviewResponse {
 
 export interface MovieQueryGetStoredMovieResponse {
   storedMovie?: MovieStoredMovie;
+}
+
+export interface MovieQueryGetStoredReviewResponse {
+  storedReview?: MovieStoredReview;
 }
 
 /**
@@ -126,6 +145,15 @@ export interface MovieStoredMovie {
 
   /** @format uint64 */
   movieId?: string;
+}
+
+export interface MovieStoredReview {
+  /** @format uint64 */
+  movieId?: string;
+  creator?: string;
+
+  /** @format uint64 */
+  reviewId?: string;
 }
 
 export interface ProtobufAny {
@@ -473,6 +501,48 @@ export class Api<SecurityDataType extends unknown> extends HttpClient<SecurityDa
   queryStoredMovie = (title: string, params: RequestParams = {}) =>
     this.request<MovieQueryGetStoredMovieResponse, RpcStatus>({
       path: `/movie/movie/stored_movie/${title}`,
+      method: "GET",
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryStoredReviewAll
+   * @summary Queries a list of StoredReview items.
+   * @request GET:/movie/movie/stored_review
+   */
+  queryStoredReviewAll = (
+    query?: {
+      "pagination.key"?: string;
+      "pagination.offset"?: string;
+      "pagination.limit"?: string;
+      "pagination.count_total"?: boolean;
+      "pagination.reverse"?: boolean;
+    },
+    params: RequestParams = {},
+  ) =>
+    this.request<MovieQueryAllStoredReviewResponse, RpcStatus>({
+      path: `/movie/movie/stored_review`,
+      method: "GET",
+      query: query,
+      format: "json",
+      ...params,
+    });
+
+  /**
+   * No description
+   *
+   * @tags Query
+   * @name QueryStoredReview
+   * @summary Queries a StoredReview by index.
+   * @request GET:/movie/movie/stored_review/{movieId}/{creator}
+   */
+  queryStoredReview = (movieId: string, creator: string, params: RequestParams = {}) =>
+    this.request<MovieQueryGetStoredReviewResponse, RpcStatus>({
+      path: `/movie/movie/stored_review/${movieId}/${creator}`,
       method: "GET",
       format: "json",
       ...params,

@@ -5,6 +5,7 @@ import { Movie } from "./movie";
 import { Params } from "./params";
 import { Review } from "./review";
 import { StoredMovie } from "./stored_movie";
+import { StoredReview } from "./stored_review";
 
 export const protobufPackage = "movie.movie";
 
@@ -15,12 +16,21 @@ export interface GenesisState {
   movieCount: number;
   reviewList: Review[];
   reviewCount: number;
-  /** this line is used by starport scaffolding # genesis/proto/state */
   storedMovieList: StoredMovie[];
+  /** this line is used by starport scaffolding # genesis/proto/state */
+  storedReviewList: StoredReview[];
 }
 
 function createBaseGenesisState(): GenesisState {
-  return { params: undefined, movieList: [], movieCount: 0, reviewList: [], reviewCount: 0, storedMovieList: [] };
+  return {
+    params: undefined,
+    movieList: [],
+    movieCount: 0,
+    reviewList: [],
+    reviewCount: 0,
+    storedMovieList: [],
+    storedReviewList: [],
+  };
 }
 
 export const GenesisState = {
@@ -42,6 +52,9 @@ export const GenesisState = {
     }
     for (const v of message.storedMovieList) {
       StoredMovie.encode(v!, writer.uint32(50).fork()).ldelim();
+    }
+    for (const v of message.storedReviewList) {
+      StoredReview.encode(v!, writer.uint32(58).fork()).ldelim();
     }
     return writer;
   },
@@ -71,6 +84,9 @@ export const GenesisState = {
         case 6:
           message.storedMovieList.push(StoredMovie.decode(reader, reader.uint32()));
           break;
+        case 7:
+          message.storedReviewList.push(StoredReview.decode(reader, reader.uint32()));
+          break;
         default:
           reader.skipType(tag & 7);
           break;
@@ -88,6 +104,9 @@ export const GenesisState = {
       reviewCount: isSet(object.reviewCount) ? Number(object.reviewCount) : 0,
       storedMovieList: Array.isArray(object?.storedMovieList)
         ? object.storedMovieList.map((e: any) => StoredMovie.fromJSON(e))
+        : [],
+      storedReviewList: Array.isArray(object?.storedReviewList)
+        ? object.storedReviewList.map((e: any) => StoredReview.fromJSON(e))
         : [],
     };
   },
@@ -112,6 +131,11 @@ export const GenesisState = {
     } else {
       obj.storedMovieList = [];
     }
+    if (message.storedReviewList) {
+      obj.storedReviewList = message.storedReviewList.map((e) => e ? StoredReview.toJSON(e) : undefined);
+    } else {
+      obj.storedReviewList = [];
+    }
     return obj;
   },
 
@@ -125,6 +149,7 @@ export const GenesisState = {
     message.reviewList = object.reviewList?.map((e) => Review.fromPartial(e)) || [];
     message.reviewCount = object.reviewCount ?? 0;
     message.storedMovieList = object.storedMovieList?.map((e) => StoredMovie.fromPartial(e)) || [];
+    message.storedReviewList = object.storedReviewList?.map((e) => StoredReview.fromPartial(e)) || [];
     return message;
   },
 };

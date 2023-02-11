@@ -8,6 +8,7 @@ import "movie/movie/params.proto";
 import "movie/movie/movie.proto";
 import "movie/movie/review.proto";
 import "movie/movie/stored_movie.proto";
+import "movie/movie/stored_review.proto";
 // this line is used by starport scaffolding # 1
 
 option go_package = "movie/x/movie/types";
@@ -46,6 +47,16 @@ service Query {
 	// Queries a list of StoredMovie items.
 	rpc StoredMovieAll(QueryAllStoredMovieRequest) returns (QueryAllStoredMovieResponse) {
 		option (google.api.http).get = "/movie/movie/stored_movie";
+	}
+
+// Queries a StoredReview by index.
+	rpc StoredReview(QueryGetStoredReviewRequest) returns (QueryGetStoredReviewResponse) {
+		option (google.api.http).get = "/movie/movie/stored_review/{movieId}/{creator}";
+	}
+
+	// Queries a list of StoredReview items.
+	rpc StoredReviewAll(QueryAllStoredReviewRequest) returns (QueryAllStoredReviewResponse) {
+		option (google.api.http).get = "/movie/movie/stored_review";
 	}
 
 // this line is used by starport scaffolding # 2
@@ -109,6 +120,25 @@ message QueryAllStoredMovieRequest {
 
 message QueryAllStoredMovieResponse {
 	repeated StoredMovie storedMovie = 1 [(gogoproto.nullable) = false];
+	cosmos.base.query.v1beta1.PageResponse pagination = 2;
+}
+
+message QueryGetStoredReviewRequest {
+	  uint64 movieId = 1;
+  string creator = 2;
+
+}
+
+message QueryGetStoredReviewResponse {
+	StoredReview storedReview = 1 [(gogoproto.nullable) = false];
+}
+
+message QueryAllStoredReviewRequest {
+	cosmos.base.query.v1beta1.PageRequest pagination = 1;
+}
+
+message QueryAllStoredReviewResponse {
+	repeated StoredReview storedReview = 1 [(gogoproto.nullable) = false];
 	cosmos.base.query.v1beta1.PageResponse pagination = 2;
 }
 

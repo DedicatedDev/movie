@@ -4,13 +4,26 @@ import (
 	"context"
 	"fmt"
 
+	"movie/x/movie/types"
+
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	sdkerrors "github.com/cosmos/cosmos-sdk/types/errors"
-	"movie/x/movie/types"
 )
 
 func (k msgServer) CreateReview(goCtx context.Context, msg *types.MsgCreateReview) (*types.MsgCreateReviewResponse, error) {
 	ctx := sdk.UnwrapSDKContext(goCtx)
+
+	//check movie already exist or not
+	_, found := k.Keeper.GetMovie(ctx, msg.MovieId)
+	if !found {
+		return nil, fmt.Errorf("[ERR] movie does not exist!: %d", msg.MovieId)
+	}
+
+	//check duplication review
+	_, found = k.Keeper.GetStoredReview(ctx, msg.MovieId, msg.Creator)
+	if found {
+		return nil, fmt.Errorf("[ERR] you already remain review to this movie: %d", msg.MovieId)
+	}
 
 	var review = types.Review{
 		Creator:     msg.Creator,

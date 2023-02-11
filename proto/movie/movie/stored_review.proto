@@ -1,0 +1,12 @@
+syntax = "proto3";
+package movie.movie;
+
+option go_package = "movie/x/movie/types";
+
+message StoredReview {
+  uint64 movieId = 1; 
+  string creator = 2; 
+  uint64 reviewId = 3; 
+  
+}
+
