@@ -4,6 +4,11 @@
 
 This is implementation of movie chain requirements.
 
+# Solution
+- add storedMovie map object to check title is unique or not. 
+  Movie is just list objects and then if list increase greatly, it fall into massive loop.
+- added storedReview double map ([movieId-creator]) to protect review duplication. 
+  
 # Unit Test.
 
 ```

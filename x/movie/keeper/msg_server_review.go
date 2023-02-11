@@ -92,5 +92,8 @@ func (k msgServer) DeleteReview(goCtx context.Context, msg *types.MsgDeleteRevie
 
 	k.RemoveReview(ctx, msg.Id)
 
+	//Save review to storedReview
+	k.RemoveStoredReview(ctx,msg.Id,msg.Creator)
+
 	return &types.MsgDeleteReviewResponse{}, nil
 }

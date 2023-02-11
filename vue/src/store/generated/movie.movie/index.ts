@@ -384,42 +384,16 @@ export default {
 		},
 		
 		
-		async sendMsgCreateReview({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgUpdateReview({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgCreateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
+				const result = await client.MovieMovie.tx.sendMsgUpdateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgCreateReview:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgDeleteReview({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgDeleteReview({ value, fee: {amount: fee, gas: "200000"}, memo })
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteReview:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgDeleteReview:Send Could not broadcast Tx: '+ e.message)
-				}
-			}
-		},
-		async sendMsgDeleteMovie({ rootGetters }, { value, fee = [], memo = '' }) {
-			try {
-				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgDeleteMovie({ value, fee: {amount: fee, gas: "200000"}, memo })
-				return result
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteMovie:Init Could not initialize signing client. Wallet is required.')
-				}else{
-					throw new Error('TxClient:MsgDeleteMovie:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgUpdateReview:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -436,16 +410,16 @@ export default {
 				}
 			}
 		},
-		async sendMsgUpdateReview({ rootGetters }, { value, fee = [], memo = '' }) {
+		async sendMsgCreateReview({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
 				const client=await initClient(rootGetters)
-				const result = await client.MovieMovie.tx.sendMsgUpdateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
+				const result = await client.MovieMovie.tx.sendMsgCreateReview({ value, fee: {amount: fee, gas: "200000"}, memo })
 				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
 				}else{
-					throw new Error('TxClient:MsgUpdateReview:Send Could not broadcast Tx: '+ e.message)
+					throw new Error('TxClient:MsgCreateReview:Send Could not broadcast Tx: '+ e.message)
 				}
 			}
 		},
@@ -462,43 +436,43 @@ export default {
 				}
 			}
 		},
-		
-		async MsgCreateReview({ rootGetters }, { value }) {
+		async sendMsgDeleteMovie({ rootGetters }, { value, fee = [], memo = '' }) {
 			try {
-				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgCreateReview({value})
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgCreateReview:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgDeleteReview({ rootGetters }, { value }) {
-			try {
-				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgDeleteReview({value})
-				return msg
-			} catch (e) {
-				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgDeleteReview:Init Could not initialize signing client. Wallet is required.')
-				} else{
-					throw new Error('TxClient:MsgDeleteReview:Create Could not create message: ' + e.message)
-				}
-			}
-		},
-		async MsgDeleteMovie({ rootGetters }, { value }) {
-			try {
-				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgDeleteMovie({value})
-				return msg
+				const client=await initClient(rootGetters)
+				const result = await client.MovieMovie.tx.sendMsgDeleteMovie({ value, fee: {amount: fee, gas: "200000"}, memo })
+				return result
 			} catch (e) {
 				if (e == MissingWalletError) {
 					throw new Error('TxClient:MsgDeleteMovie:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgDeleteMovie:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		async sendMsgDeleteReview({ rootGetters }, { value, fee = [], memo = '' }) {
+			try {
+				const client=await initClient(rootGetters)
+				const result = await client.MovieMovie.tx.sendMsgDeleteReview({ value, fee: {amount: fee, gas: "200000"}, memo })
+				return result
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteReview:Init Could not initialize signing client. Wallet is required.')
+				}else{
+					throw new Error('TxClient:MsgDeleteReview:Send Could not broadcast Tx: '+ e.message)
+				}
+			}
+		},
+		
+		async MsgUpdateReview({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.MovieMovie.tx.msgUpdateReview({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgDeleteMovie:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgUpdateReview:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -515,16 +489,16 @@ export default {
 				}
 			}
 		},
-		async MsgUpdateReview({ rootGetters }, { value }) {
+		async MsgCreateReview({ rootGetters }, { value }) {
 			try {
 				const client=initClient(rootGetters)
-				const msg = await client.MovieMovie.tx.msgUpdateReview({value})
+				const msg = await client.MovieMovie.tx.msgCreateReview({value})
 				return msg
 			} catch (e) {
 				if (e == MissingWalletError) {
-					throw new Error('TxClient:MsgUpdateReview:Init Could not initialize signing client. Wallet is required.')
+					throw new Error('TxClient:MsgCreateReview:Init Could not initialize signing client. Wallet is required.')
 				} else{
-					throw new Error('TxClient:MsgUpdateReview:Create Could not create message: ' + e.message)
+					throw new Error('TxClient:MsgCreateReview:Create Could not create message: ' + e.message)
 				}
 			}
 		},
@@ -538,6 +512,32 @@ export default {
 					throw new Error('TxClient:MsgUpdateMovie:Init Could not initialize signing client. Wallet is required.')
 				} else{
 					throw new Error('TxClient:MsgUpdateMovie:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgDeleteMovie({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.MovieMovie.tx.msgDeleteMovie({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteMovie:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgDeleteMovie:Create Could not create message: ' + e.message)
+				}
+			}
+		},
+		async MsgDeleteReview({ rootGetters }, { value }) {
+			try {
+				const client=initClient(rootGetters)
+				const msg = await client.MovieMovie.tx.msgDeleteReview({value})
+				return msg
+			} catch (e) {
+				if (e == MissingWalletError) {
+					throw new Error('TxClient:MsgDeleteReview:Init Could not initialize signing client. Wallet is required.')
+				} else{
+					throw new Error('TxClient:MsgDeleteReview:Create Could not create message: ' + e.message)
 				}
 			}
 		},

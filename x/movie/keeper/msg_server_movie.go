@@ -82,8 +82,7 @@ func (k msgServer) DeleteMovie(goCtx context.Context, msg *types.MsgDeleteMovie)
 	if msg.Creator != val.Creator {
 		return nil, sdkerrors.Wrap(sdkerrors.ErrUnauthorized, "incorrect owner")
 	}
-
-	k.RemoveMovie(ctx, msg.Id)
-
+	//Save review to storedReview
+	k.RemoveStoredMovie(ctx, val.Title)
 	return &types.MsgDeleteMovieResponse{}, nil
 }
